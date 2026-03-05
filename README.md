@@ -584,7 +584,3 @@ sacct -j JOBID            # Job history
 # ── Download results ─────────────────────
 scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/results.txt ./
 ```
-
-
-
-*Made for the Mika Fish Lab  if you get stuck, ask Ty!*
