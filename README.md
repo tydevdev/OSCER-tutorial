@@ -458,6 +458,7 @@ cat output.txt
 ### What `slurm_*.out` and `output.txt` mean
 
 `slurm_*.out` is the job log from your scheduler run.
+Slurm directs that log output to the file name set by `#SBATCH --output`, but the messages inside come from `hello_oscer.py` and the commands in the job script.
 It shows what your job did on the compute node, including environment details and normal print statements.
 That file is where you check startup issues, scheduling context, or Python runtime messages from the job run.
 
