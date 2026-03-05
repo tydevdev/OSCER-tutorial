@@ -2,7 +2,7 @@
 
 > **Who is this for?** Anyone in the lab who wants to run Python scripts on the OU supercomputer (OSCER/Schooner). No prior HPC experience required.
 
-> **Sample project folder used throughout this guide:** `sample_oscer_project/`
+> **Sample project folder used throughout this guide:** `tutorial_oscer_project/`
 
 You will need the terminal to run all OSCER commands. Every step in this guide is a shell command you type in Terminal and run on your local machine or on the OSCER login node after you connect.
 
@@ -92,7 +92,7 @@ pwd                    # Print current directory (where am I?)
 ls                     # List files in current directory
 ls -la                 # List ALL files with details (including hidden ones)
 cd /scratch/$USER      # Change to your scratch directory
-mkdir sample_oscer_project       # Create a new folder
+mkdir tutorial_oscer_project       # Create a new folder
 cp file.py backup.py   # Copy a file
 mv old.py new.py       # Rename/move a file
 rm file.py             # Delete a file (careful, no undo!)
@@ -116,10 +116,10 @@ You need to get your Python scripts (and any data) from your local computer onto
 
 ```bash
 # Upload a single file:
-scp sample_oscer_project/hello_oscer.py YOUR_USERNAME@schooner.oscer.ou.edu:/home/YOUR_USERNAME/sample_oscer_project/
+scp tutorial_oscer_project/hello_oscer.py YOUR_USERNAME@schooner.oscer.ou.edu:/home/YOUR_USERNAME/tutorial_oscer_project/
 
 # Upload an entire folder:
-scp -r sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
+scp -r tutorial_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
 ```
 
 ### Using `rsync` (Smarter Sync)
@@ -128,7 +128,7 @@ scp -r sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
 
 ```bash
 # Sync the sample project folder to OSCER:
-rsync -avh sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/
+rsync -avh tutorial_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/
 ```
 
 **Flags:**
@@ -137,8 +137,8 @@ rsync -avh sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_os
  `h` = humanreadable sizes
 
 > **Pro tip:** The trailing `/` on the source folder matters!
->  `sample_oscer_project/` → copies the *contents* into the destination
->  `sample_oscer_project` (no slash) → copies the *folder itself* into the destination
+>  `tutorial_oscer_project/` → copies the *contents* into the destination
+>  `tutorial_oscer_project` (no slash) → copies the *folder itself* into the destination
 
 
 
@@ -187,7 +187,7 @@ Your prompt should now show `(tutorialvenv)` at the beginning  that means it's a
 pip install --upgrade pip
 
 # Install from the requirements.txt file
-pip install -r ~/sample_oscer_project/requirements.txt
+pip install -r ~/tutorial_oscer_project/requirements.txt
 ```
 
 Or install packages individually:
@@ -282,7 +282,7 @@ Once your files are on OSCER and your venv is set up, here's how to submit:
 
 ```bash
 # Make sure you're in the directory with your script and the .slurm file
-cd ~/sample_oscer_project
+cd ~/tutorial_oscer_project
 
 # Submit it!
 sbatch sample_job.slurm
@@ -372,18 +372,18 @@ After your job finishes, you'll want to pull the results back to your local mach
 # From your LOCAL terminal (not OSCER):
 
 # Download a single file:
-scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/output.txt ./
+scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/output.txt ./
 
 # Download an entire output folder:
-scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/results/ ./local_results/
+scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/results/ ./local_results/
 ```
 
 ### Using `rsync`
 
 ```bash
 # Sync results from OSCER to a local folder:
-rsync -avh YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/output.txt ./
-rsync -avh YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/results/ ./local_results/
+rsync -avh YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/output.txt ./
+rsync -avh YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/results/ ./local_results/
 ```
 
 
@@ -400,7 +400,7 @@ Here is every step in order, using the files in this tutorial. Follow this and y
 #    to your actual OSCER username, then save it
 
 # 2. Upload the tutorial files to OSCER
-scp -r sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
+scp -r tutorial_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
 ```
 
 ### On OSCER (SSH In)
@@ -410,7 +410,7 @@ scp -r sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
 ssh YOUR_USERNAME@schooner.oscer.ou.edu
 
 # 4. Verify your files made it
-ls ~/sample_oscer_project/
+ls ~/tutorial_oscer_project/
 #   hello_oscer.py  requirements.txt  sample_job.slurm
 
 # 5. Create a Python virtual environment (onetime setup)
@@ -422,10 +422,10 @@ source /scratch/$USER/tutorial-venv/bin/activate
 
 # 7. Install dependencies
 pip install --upgrade pip
-pip install -r ~/sample_oscer_project/requirements.txt
+pip install -r ~/tutorial_oscer_project/requirements.txt
 
 # 8. Submit the job!
-cd ~/sample_oscer_project
+cd ~/tutorial_oscer_project
 sbatch sample_job.slurm
 #   "Submitted batch job 1234567"
 
@@ -443,12 +443,12 @@ cat output.txt
 
 ```bash
 # 11. Download the results
-scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/output.txt ./
-scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/slurm_*.out ./
-scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/slurm_*.err ./
+scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/output.txt ./
+scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/slurm_*.out ./
+scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/slurm_*.err ./
 
 # Or copy the whole project folder back in one step
-scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project ./sample_oscer_project_copy/
+scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project ./tutorial_oscer_project_copy/
 
 # 12. Read them locally
 cat output.txt
@@ -536,10 +536,10 @@ Or use **VS Code Remote SSH**  install the "Remote  SSH" extension, and you can 
 | File | What It Is |
 |||
 | `README.md` | This tutorial (you're reading it!) |
-| `sample_oscer_project/` | The selfcontained sample project folder used in all command examples |
-| `sample_oscer_project/hello_oscer.py` | A simple Python script that prints system info and creates `output.txt` |
-| `sample_oscer_project/requirements.txt` | Python packages to install (`numpy`, `pandas`, `requests`) |
-| `sample_oscer_project/sample_job.slurm` | A SLURM job script ready to submit (edit your username first!) |
+| `tutorial_oscer_project/` | The selfcontained sample project folder used in all command examples |
+| `tutorial_oscer_project/hello_oscer.py` | A simple Python script that prints system info and creates `output.txt` |
+| `tutorial_oscer_project/requirements.txt` | Python packages to install (`numpy`, `pandas`, `requests`) |
+| `tutorial_oscer_project/sample_job.slurm` | A SLURM job script ready to submit (edit your username first!) |
 
 
 
@@ -550,23 +550,23 @@ Or use **VS Code Remote SSH**  install the "Remote  SSH" extension, and you can 
 ssh YOUR_USERNAME@schooner.oscer.ou.edu
 
 # ── Upload files ──────────────────────────
-scp sample_oscer_project/hello_oscer.py YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/
-rsync -avh sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/
+scp tutorial_oscer_project/hello_oscer.py YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/
+rsync -avh tutorial_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/
 
 # ── Environment setup (onetime) ─────────
 python3 -m venv /scratch/$USER/my-venv
 source /scratch/$USER/my-venv/bin/activate
-pip install -r ~/sample_oscer_project/requirements.txt
+pip install -r ~/tutorial_oscer_project/requirements.txt
 
 # ── Submit & monitor ─────────────────────
-cd ~/sample_oscer_project
+cd ~/tutorial_oscer_project
 sbatch sample_job.slurm   # Submit
 squeue -u $USER           # Check status
 scancel JOBID             # Cancel
 sacct -j JOBID            # Job history
 
 # ── Download results ─────────────────────
-scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/results.txt ./
+scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/results.txt ./
 ```
 
 
