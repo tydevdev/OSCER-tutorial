@@ -284,7 +284,7 @@ Once your files are on OSCER and your venv is set up, here's how to submit:
 # Make sure you're in the directory with your script and the .slurm file
 cd ~/tutorial_oscer_project
 
-# Submit it!
+# Submit it
 sbatch sample_job.slurm
 ```
 
@@ -424,7 +424,7 @@ source /scratch/$USER/tutorial-venv/bin/activate
 pip install --upgrade pip
 pip install -r ~/tutorial_oscer_project/requirements.txt
 
-# 8. Submit the job!
+# 8. Submit the job
 cd ~/tutorial_oscer_project
 sbatch sample_job.slurm
 #   "Submitted batch job 1234567"
