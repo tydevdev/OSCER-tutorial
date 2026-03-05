@@ -435,6 +435,9 @@ scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/output.txt ./
 scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/slurm_*.out ./
 scp YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/slurm_*.err ./
 
+# Or copy the whole project folder back in one step
+scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project ./sample_oscer_project_copy/
+
 # 12. Read them locally
 cat output.txt
 ```
