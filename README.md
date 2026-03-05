@@ -73,7 +73,7 @@ When you log in, you're dropped into your **home directory**: `/home/YOUR_USERNA
 OSCER has two main storage areas you should know about:
 
 | Location | Path | Space | Speed | Persistence |
-||||||
+|---|---|---|---|---|
 | **Home** | `/home/YOUR_USERNAME/` | Small (~25 GB) | Slower | Permanent  backed up |
 | **Scratch** | `/scratch/YOUR_USERNAME/` | Large (~10 TB) | Faster | Temporary  files deleted after ~30 days of inactivity |
 
@@ -249,7 +249,7 @@ python hello_oscer.py
 ### Key `#SBATCH` Options
 
 | Option | What It Does | Example |
-||||
+|---|---|---|
 | `jobname` | Name your job (for `squeue`) | `jobname=my_analysis` |
 | `partition` | Which queue to use | `normal`, `gpu`, `debug` |
 | `time` | Max walltime (HH:MM:SS) | `time=04:00:00` (4 hours) |
@@ -259,7 +259,7 @@ python hello_oscer.py
 | `output` | Where stdout goes | `output=logs/out_%j.log` |
 | `error` | Where stderr goes | `error=logs/err_%j.log` |
 
-> **`%j` gets replaced with the job ID**  so if your job ID is `1234567`, the output file will be `slurm_1234567.out`. This lets you run the same script multiple times without overwriting logs.
+> **`%j` gets replaced with the job ID** so if your job ID is `1234567`, the output file will be `slurm_1234567.out`. This lets you run the same script multiple times without overwriting logs.
 
 ### How Much Should I Request?
 
@@ -480,7 +480,7 @@ Use this rule of thumb after the run:
 ### Common Issues
 
 | Problem | Likely Cause | Fix |
-||||
+|---|---|---|
 | `python3: command not found` | Python module not loaded | `module load Python/3.10.4GCCcore11.3.0` |
 | `ModuleNotFoundError: No module named 'numpy'` | Venv not activated or package not installed | Activate venv, then `pip install numpy` |
 | Job stuck in `PD` forever | Requested too many resources or cluster is busy | Reduce `time`, `mem`, or `cpuspertask` |
@@ -550,9 +550,9 @@ Or use **VS Code Remote SSH**  install the "Remote  SSH" extension, and you can 
 ## Files in This Folder
 
 | File | What It Is |
-|||
+|---|---|
 | `README.md` | This tutorial (you're reading it!) |
-| `tutorial_oscer_project/` | The selfcontained sample project folder used in all command examples |
+| `tutorial_oscer_project/` | The self-contained sample project folder used in all command examples |
 | `tutorial_oscer_project/hello_oscer.py` | A simple Python script that prints system info and creates `output.txt` |
 | `tutorial_oscer_project/requirements.txt` | Python packages to install (`numpy`, `pandas`, `requests`) |
 | `tutorial_oscer_project/sample_job.slurm` | A SLURM job script ready to submit (edit your username first!) |
