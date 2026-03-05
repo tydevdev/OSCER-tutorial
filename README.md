@@ -447,7 +447,8 @@ scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/output.txt ./
 scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/slurm_*.out ./
 scp YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project/slurm_*.err ./
 
-# Or copy the whole project folder back in one step
+# BETTER ALTERNATIVE: copy the whole project folder back in one command
+# The destination path after the space is where the folder will be copied
 scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project ./tutorial_oscer_project_copy/
 
 # 12. Read them locally
