@@ -1,6 +1,6 @@
 # OSCER Tutorial  Running Python on OSCER
 
-> **Who is this for?** Anyone in the lab who wants to run Python scripts on the OU supercomputer (OSCER/Schooner). No prior HPC experience required.
+> **Who is this for?** Anyone who wants to run Python scripts on the OU supercomputer (OSCER/Schooner). No prior HPC experience required.
 
 > **Sample project folder used throughout this guide:** `tutorial_oscer_project/`
 
