@@ -4,6 +4,8 @@
 
 > **Sample project folder used throughout this guide:** `sample_oscer_project/`
 
+You will need the terminal to run all OSCER commands. Every step in this guide is a shell command you type in Terminal and run on your local machine or on the OSCER login node after you connect.
+
 
 
 ## Table of Contents
