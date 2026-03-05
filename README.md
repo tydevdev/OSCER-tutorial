@@ -455,6 +455,20 @@ scp -r YOUR_USERNAME@schooner.oscer.ou.edu:~/tutorial_oscer_project ./tutorial_o
 cat output.txt
 ```
 
+### What `slurm_*.out` and `output.txt` mean
+
+`slurm_*.out` is the job log from your scheduler run.
+It shows what your job did on the compute node, including environment details and normal print statements.
+That file is where you check startup issues, scheduling context, or Python runtime messages from the job run.
+
+`output.txt` is your script output file.
+It is created by `hello_oscer.py` and contains the task result you asked the script to write.
+When you see the success text in `output.txt`, your script logic executed and reached completion.
+
+Use this rule of thumb after the run:
+`slurm_*.out` tells you whether the job ran correctly on the cluster.
+`output.txt` tells you whether your script produced the expected result.
+
 **That's it!** You've now uploaded code, created a venv, submitted a SLURM job, and downloaded the results.
 
 
