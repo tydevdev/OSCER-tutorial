@@ -8,20 +8,21 @@
 
 ## Table of Contents
 
-1. [What is OSCER?](#1whatisoscer)
-2. [Connecting via SSH](#2connectingviassh)
-3. [Navigating the Filesystem](#3navigatingthefilesystem)
-4. [Uploading Your Files](#4uploadingyourfiles)
-5. [Setting Up a Python Environment](#5settingupapythonenvironment)
-6. [Understanding SLURM (the Job Scheduler)](#6understandingslurmthejobscheduler)
-7. [Submitting Your First Job](#7submittingyourfirstjob)
-8. [Checking Job Status & Reading Output](#8checkingjobstatusreadingoutput)
-9. [Downloading Results to Your Computer](#9downloadingresultstoyourcomputer)
-10. [The Full Walkthrough (Start to Finish)](#10thefullwalkthroughstarttofinish)
-11. [Tips & Troubleshooting](#11tipstroubleshooting)
+1. [What is OSCER?](#what-is-oscer)
+2. [Connecting via SSH](#connecting-via-ssh)
+3. [Navigating the Filesystem](#navigating-the-filesystem)
+4. [Uploading Your Files](#uploading-your-files)
+5. [Setting Up a Python Environment](#setting-up-a-python-environment)
+6. [Understanding SLURM (the Job Scheduler)](#understanding-slurm-the-job-scheduler)
+7. [Submitting Your First Job](#submitting-your-first-job)
+8. [Checking Job Status & Reading Output](#checking-job-status-and-reading-output)
+9. [Downloading Results to Your Computer](#downloading-results-to-your-computer)
+10. [The Full Walkthrough (Start to Finish)](#the-full-walkthrough-start-to-finish)
+11. [Tips & Troubleshooting](#tips-and-troubleshooting)
 
 
 
+<a id="what-is-oscer"></a>
 ## 1. What is OSCER?
 
 OSCER stands for the **OU Supercomputing Center for Education & Research**. The actual machine is called **Schooner**. It's a big cluster of computers (nodes) that we can submit jobs to. Instead of running code on your laptop, you send it to Schooner and it runs on powerful hardware  sometimes with GPUs, lots of RAM, and many CPU cores.
@@ -38,6 +39,7 @@ OSCER stands for the **OU Supercomputing Center for Education & Research**. The 
 
 
 
+<a id="connecting-via-ssh"></a>
 ## 2. Connecting via SSH
 
 SSH (Secure Shell) is how you connect to Schooner from your terminal.
@@ -61,6 +63,7 @@ Replace `YOUR_USERNAME` with your actual OSCER username. You'll be prompted for 
 
 
 
+<a id="navigating-the-filesystem"></a>
 ## 3. Navigating the Filesystem
 
 When you log in, you're dropped into your **home directory**: `/home/YOUR_USERNAME/`
@@ -100,6 +103,7 @@ quota                  # Check your disk quota
 
 
 
+<a id="uploading-your-files"></a>
 ## 4. Uploading Your Files
 
 You need to get your Python scripts (and any data) from your local computer onto OSCER. There are two common tools: `scp` and `rsync`.
@@ -136,6 +140,7 @@ rsync -avh sample_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_os
 
 
 
+<a id="setting-up-a-python-environment"></a>
 ## 5. Setting Up a Python Environment
 
 OSCER has system Python, but you should **always** create a virtual environment (venv) for your project. This avoids version conflicts and gives you full control over your packages.
@@ -207,6 +212,7 @@ deactivate
 
 
 
+<a id="understanding-slurm-the-job-scheduler"></a>
 ## 6. Understanding SLURM (the Job Scheduler)
 
 You **cannot** run `python my_script.py` directly on the login node  it's not allowed and your process will get killed (this is how I crashed the supercomputer, so DON'T DO IT!!!). Instead, you write a **SLURM job script** that tells the scheduler:
@@ -265,6 +271,7 @@ A good starting strategy: start with 1 hour, 4 GB RAM, 1 CPU. Adjust based on wh
 
 
 
+<a id="submitting-your-first-job"></a>
 ## 7. Submitting Your First Job
 
 Once your files are on OSCER and your venv is set up, here's how to submit:
@@ -289,6 +296,7 @@ That number is your **job ID**  remember it!
 
 
 
+<a id="checking-job-status-and-reading-output"></a>
 ## 8. Checking Job Status & Reading Output
 
 ### Check If Your Job Is Running
@@ -351,6 +359,7 @@ This is super useful  `MaxRSS` tells you how much memory your job actually used,
 
 
 
+<a id="downloading-results-to-your-computer"></a>
 ## 9. Downloading Results to Your Computer
 
 After your job finishes, you'll want to pull the results back to your local machine.
@@ -377,6 +386,7 @@ rsync -avh YOUR_USERNAME@schooner.oscer.ou.edu:~/sample_oscer_project/results/ .
 
 
 
+<a id="the-full-walkthrough-start-to-finish"></a>
 ## 10. The Full Walkthrough (Start to Finish)
 
 Here is every step in order, using the files in this tutorial. Follow this and you'll have a working job on OSCER.
@@ -446,6 +456,7 @@ cat output.txt
 
 
 
+<a id="tips-and-troubleshooting"></a>
 ## 11. Tips & Troubleshooting
 
 ### Common Issues
