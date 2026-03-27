@@ -6,6 +6,15 @@
 
 You will need the terminal to run all OSCER commands. Every step in this guide is a shell command you type in Terminal and run on your local machine or on the OSCER login node after you connect.
 
+## Quick Note for Windows Users
+
+Windows can work for this tutorial, but the smoothest path is to use **WSL** so your local commands match the Linux-style examples in this guide.
+
+- **Recommended on Windows:** use **WSL**
+- **Also possible:** use **PowerShell** for `ssh` and `scp`, then run the OSCER commands after you log in
+- **Important:** after `ssh YOUR_USERNAME@schooner.oscer.ou.edu`, you are on a **Linux shell on OSCER**, so the Linux commands in this guide apply there
+- **Heads-up:** `rsync` is often not available by default in plain Windows PowerShell, so if that step fails on Windows, use `scp` or run the command from WSL instead
+
 
 
 ## Table of Contents
@@ -49,7 +58,7 @@ SSH (Secure Shell) is how you connect to Schooner from your terminal.
 ### FirstTime Setup
 
 1. **Get an OSCER account**  talk to your PI or visit [oscer.ou.edu](https://www.oscer.ou.edu/) to request one
-2. **Open your terminal** (Terminal on Mac, PowerShell or WSL on Windows)
+2. **Open your terminal** (Terminal on Mac, or preferably WSL on Windows; PowerShell can work for basic `ssh` and `scp`)
 3. **Connect:**
 
 ```bash
@@ -112,6 +121,8 @@ You need to get your Python scripts (and any data) from your local computer onto
 
 ### Using `scp` (Simple Copy)
 
+These examples work well from Mac, Linux, and Windows PowerShell.
+
 `scp` works like `cp`, but over the network.
 
 ```bash
@@ -123,6 +134,8 @@ scp -r tutorial_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
 ```
 
 ### Using `rsync` (Smarter Sync)
+
+These examples are best run from Mac, Linux, or WSL. If you are using plain Windows PowerShell and do not have `rsync`, use the `scp` examples instead.
 
 `rsync` is better for syncing folders because it only transfers files that changed:
 
@@ -167,8 +180,8 @@ python3 -m venv tutorial-venv
 
 > **If `python3` doesn't work**, try loading a module first:
 > ```bash
-> module load Python/3.10.4GCCcore11.3.0
-> python3 m venv tutorialvenv
+> module load Python/3.10.4-GCCcore-11.3.0
+> python3 -m venv tutorial-venv
 > ```
 > You can see available Python modules with: `module avail Python`
 
@@ -231,13 +244,13 @@ Here's the `sample_job.slurm` file included in this tutorial:
 ```bash
 #!/usr/bin/env bash
 
-#SBATCH jobname=hello_oscer          # Name shown in the queue
-#SBATCH partition=normal              # "normal" = CPU, "gpu" = GPU
-#SBATCH time=00:10:00                 # Max runtime: 10 minutes
-#SBATCH cpuspertask=1               # Number of CPU cores
-#SBATCH mem=1G                        # Memory (RAM)
-#SBATCH output=slurm_%j.out           # Stdout file (%j = job ID)
-#SBATCH error=slurm_%j.err            # Stderr file (%j = job ID)
+#SBATCH --job-name=hello_oscer        # Name shown in the queue
+#SBATCH --partition=normal            # "normal" = CPU, "gpu" = GPU
+#SBATCH --time=00:10:00               # Max runtime: 10 minutes
+#SBATCH --cpus-per-task=1             # Number of CPU cores
+#SBATCH --mem=1G                      # Memory (RAM)
+#SBATCH --output=slurm_%j.out         # Stdout file (%j = job ID)
+#SBATCH --error=slurm_%j.err          # Stderr file (%j = job ID)
 
 # Activates your virtual environment
 source /scratch/YOUR_USERNAME/tutorial-venv/bin/activate
@@ -402,6 +415,8 @@ Here is every step in order, using the files in this tutorial. Follow this and y
 # 2. Upload the tutorial files to OSCER
 scp -r tutorial_oscer_project/ YOUR_USERNAME@schooner.oscer.ou.edu:~/
 ```
+
+If you are on Windows, the easiest option is to run that local command from **WSL**. If you stay in **PowerShell**, `scp` should still work for this step.
 
 ### On OSCER (SSH In)
 
