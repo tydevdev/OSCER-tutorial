@@ -252,12 +252,18 @@ Here's the `sample_job.slurm` file included in this tutorial:
 #SBATCH --output=slurm_%j.out         # Stdout file (%j = job ID)
 #SBATCH --error=slurm_%j.err          # Stderr file (%j = job ID)
 
-# Activates your virtual environment
-source /scratch/YOUR_USERNAME/tutorial-venv/bin/activate
+set -euo pipefail
+
+VENV_PATH="/scratch/YOUR_USERNAME/tutorial-venv"
+
+# Activate the virtual environment
+source "${VENV_PATH}/bin/activate"
 
 # Runs your script
-python hello_oscer.py
+"${VENV_PATH}/bin/python" hello_oscer.py
 ```
+
+That layout matches the same safety rule used in the standard TranscriptFormer OSCER launcher: keep the full `#SBATCH` block first, then turn on `set -euo pipefail`, then activate the environment and run Python from the venv explicitly.
 
 ### Key `#SBATCH` Options
 

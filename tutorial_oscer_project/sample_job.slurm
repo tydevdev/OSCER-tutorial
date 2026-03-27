@@ -17,6 +17,8 @@
 # #SBATCH --partition=gpu
 # #SBATCH --gres=gpu:1
 
+set -euo pipefail
+
 # IMPORTANT: change YOUR_USERNAME to your actual OSCER username!
 VENV_PATH="/scratch/YOUR_USERNAME/tutorial-venv"
 
@@ -25,6 +27,6 @@ echo "Activating venv at: ${VENV_PATH}"
 source "${VENV_PATH}/bin/activate"
 
 echo "Running hello_oscer.py..."
-python hello_oscer.py
+"${VENV_PATH}/bin/python" hello_oscer.py
 
 echo "Job complete!"
